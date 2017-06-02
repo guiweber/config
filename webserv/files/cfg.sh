@@ -49,7 +49,7 @@ wget https://github.com/ampache/ampache/archive/master.tar.gz
 tar -xvzf master.tar.gz --strip-components=1
 rm master.tar.gz -f
 dnf install git -qy # Required for Ampache composer install
-composer install --prefer-source --no-interaction
+composer install --prefer-source --no-interaction --quiet
 
 # Install Wallbag
 mkdir /var/www/html/wallbag
