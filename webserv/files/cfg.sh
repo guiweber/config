@@ -54,6 +54,8 @@ tar -xvzf master.tar.gz --strip-components=1
 rm master.tar.gz -f
 dnf install git -qy # Required for Ampache composer install
 composer install --prefer-source --no-interaction --quiet
+chown -R apache:apache config
+chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow PHP to write to the folder
 
 # Install Wallbag
 mkdir /var/www/html/wallbag
