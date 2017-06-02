@@ -10,7 +10,7 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 - Run the following commands as su:
  ```
  wget https://goo.gl/LCs85o -O cfg.sh
- bash cfg.sh
+ bash cfg.sh | tee cfg.log
 ```
 - change the passwords for the mysql config and then execute the file as su
 
