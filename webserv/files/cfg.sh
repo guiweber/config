@@ -30,6 +30,10 @@ cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
 
+# PHP configuration
+sed -i 's/post_max_size = 8M/post_max_size = 128M/' /etc/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 128M/' /etc/php.ini
+
 # Add firewall rules
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
 firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
