@@ -11,7 +11,7 @@ mount -t auto /dev/cdrom media/cdrom/
 sh /media/cdrom/VBoxLinuxAdditions.run 
 
 # Install web apps
-dnf install mariadb httpd mod_ssl php composer -y
+dnf install mariadb mariadb-server httpd mod_ssl php composer -y
 dnf install install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
