@@ -23,7 +23,7 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 
 # Install web apps
 dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
-dnf install install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
+dnf install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
 
 # httpd configuration
 cd /etc/httpd/conf.d
@@ -74,5 +74,26 @@ systemctl enable httpd.service
 systemctl start mariadb
 systemctl start httpd.service
 
-# Interactive mySQL config
-mysql_secure_installation
+# Automated mySQL config
+dnf install expect -qy
+expect -c "
+set timeout 10
+spawn mysql_secure_installation
+expect \"Enter current password for root (enter for none):\"
+send \"\r\"
+expect \"Change the root password?\"
+send \"y\r\"
+expect \"New password:\"
+send \"root\r\"
+expect \"Re-enter new password:\"
+send \"root\r\"
+expect \"Remove anonymous users?\"
+send \"y\r\"
+expect \"Disallow root login remotely?\"
+send \"y\r\"
+expect \"Remove test database and access to it?\"
+send \"y\r\"
+expect \"Reload privilege tables now?\"
+send \"y\r\"
+expect eof
+"
