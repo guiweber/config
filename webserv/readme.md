@@ -3,10 +3,11 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 
 ## Prerequisites
 - Install Fedora Server (the NetInstall iso provides the option)
-- Configure port forwarding in your internet router and through VirtualBox
+- Configure port forwarding (22, 80, 443) in your internet router and through VirtualBox.
 
 ## Run config bash file
 - Make sure the guest additions CD is inserted into virtual box
+- Connect to the server on port 22 with SSH
 - Run the following commands as su:
  ```bash
  wget https://goo.gl/LCs85o -O cfg.sh && bash cfg.sh | tee cfg.log
