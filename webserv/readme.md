@@ -13,13 +13,6 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 ```
 
 ## Configure Ampache
-- Edit ampache.cfg.php with vi in /var/www/config in the docker container and change the following settings if needed
-  - use_auth = true
-  - default_auth_level = user
-  - allow_public_registration = false
-- Copy the music to /home/media/music on the host
-- Change the permissions of /home/media recursively to 755
-- You can now connect to the webserver and follow the instructions on screen
-  - The mysql host is "maria"
-  - The mysql root user is "admin" with the password specified
-  - Create a catalog with path /home/media/music
+- Access the ampache address in the browser and follow the on-screen instructions
+- If Ampache complains that it can't connect to the database, you may need to copy the config file from the repo, set `use_auth = false` temporarily in order to create the first user from the app.
+- If need be, edit the config file with `nano /var/www/config/ampache.cfg.php/
