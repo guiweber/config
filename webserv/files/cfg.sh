@@ -16,8 +16,9 @@ dnf update -qy
 # Vbox guest additions installation
 dnf install gcc kernel-devel kernel-headers -qy 
 mkdir --p /media/cdrom
-mount -t auto /dev/cdrom media/cdrom/
-sh /media/cdrom/VBoxLinuxAdditions.run 
+mount -t auto /dev/cdrom /media/cdrom
+sh /media/cdrom/VBoxLinuxAdditions.run
+# If this fails, check logs at /var/log/VboxGuestAdditions.log
 
 # Install web apps
 dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
