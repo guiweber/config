@@ -28,6 +28,10 @@ cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
 
+# Add firewall rules
+firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
+firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
+
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
 dnf install ffmpeg -y
 
