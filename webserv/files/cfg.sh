@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Change the console resolution
+# Change the console resolution - DOES NOT WORK WITH GUEST ADDITIONS: USE SSH INSTEAD
+# Option 1
 # https://www.pendrivelinux.com/vga-boot-modes-to-set-screen-resolution/
-echo GRUB_CMDLINE_LINUX_DEFAULT="vga=795" >> /etc/default/grub
-grub2-mkconfig -o /boot/grub2/grub.cfg
-# Other options that may work if another resolution is needed
+# echo GRUB_CMDLINE_LINUX_DEFAULT="vga=795" >> /etc/default/grub
+# grub2-mkconfig -o /boot/grub2/grub.cfg
+# Option 2 (not tested)
 # echo GRUB_GFXMODE=1280×720x24 >> /etc/default/grub
 # echo GRUB_GFXPAYLOAD_LINUX=1280x720x24 >> /etc/default/grub
 
@@ -30,8 +31,11 @@ wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampa
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
 
 # Add firewall rules
+# firewall-cmd --get-active-zones # Use this to check firewall zone if needed
 firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
 firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
+firewall-cmd --permanent --zone=FedoraServer --add-port=22/tcp  #For ssh
+systemctl restart firewalld.service
 
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
 dnf install ffmpeg -qy
