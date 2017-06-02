@@ -21,26 +21,27 @@ dnf install ffmpeg -y
 dnf install python-certbot-apache -y
 
 # Install Ampache
-cd /var/tmp
-wget https://github.com/ampache/ampache/archive/master.tar.gz
-tar -xvzf master.tar.gz
-mv master /var/www/html/ampache
+mkdir /var/www/html/ampache
 cd /var/www/html/ampache
+wget https://github.com/ampache/ampache/archive/master.tar.gz
+tar -xvzf master.tar.gz --strip-components=1
+rm master.tar.gz -f
 composer install --prefer-source --no-interaction
 
 # Install Wallbag
-cd /var/tmp
-wget https://github.com/wallabag/wallabag/archive/master.tar.gz
-tar -xvzf master.tar.gz
-mv master /var/www/html/wallbag
+mkdir /var/www/html/wallbag
 cd /var/www/html/wallbag
+wget https://github.com/wallabag/wallabag/archive/master.tar.gz
+tar -xvzf master.tar.gz --strip-components=1
+rm master.tar.gz -f
 make install
 
 # Install Owncloud
-cd /var/tmp
+mkdir /var/www/html/owncloud
+cd /var/www/html/owncloud
 wget https://download.owncloud.org/community/owncloud-10.0.2.tar.bz2
-tar -xvjf owncloud-10.0.2.tar.bz2
-mv owncloud-10.0.2 /var/www/html/owncloud
+tar -xvjf owncloud-10.0.2.tar.bz2 --strip-components=1
+rm owncloud-10.0.2.tar.bz2 -f
 
 # Configure startup apps
 systemctl enable mariadb
@@ -49,7 +50,6 @@ systemctl enable httpd.service
 # Start apps
 systemctl start mariadb
 systemctl start httpd.service
-
 
 # Interactive mySQL config
 mysql_secure_installation
