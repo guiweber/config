@@ -23,6 +23,11 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 dnf install mariadb mariadb-server httpd mod_ssl php composer -y
 dnf install install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
 
+# httpd configuration
+cd /etc/httpd/conf.d
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
+
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
 dnf install ffmpeg -y
 
