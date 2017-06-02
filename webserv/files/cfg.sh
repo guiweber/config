@@ -56,6 +56,9 @@ dnf install git -qy # Required for Ampache composer install
 composer install --prefer-source --no-interaction --quiet
 chown -R apache:apache config
 chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow PHP to write to the folder
+mkdir /media/ampache
+mkdir /media/ampache/music
+chown -R apache:apache /media/ampache
 
 # Install Wallbag
 mkdir /var/www/html/wallbag
