@@ -8,11 +8,14 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 ## Run config bash file
 - Make sure the guest additions CD is inserted into virtual box
 - Run the following commands as su:
- ```
- wget https://goo.gl/LCs85o -O cfg.sh
- bash cfg.sh | tee cfg.log
+ ```bash
+ wget https://goo.gl/LCs85o -O cfg.sh && bash cfg.sh | tee cfg.log
 ```
-- change the passwords for the mysql config and then execute the file as su
+
+## Configure PHP
+- Run `nano /etc/php.ini` and adjust the following settings:
+  - post_max_size = 128M
+  - upload_max_filesize = 128M
 
 ## Configure Ampache
 - Edit ampache.cfg.php with vi in /var/www/config in the docker container and change the following settings if needed
