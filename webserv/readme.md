@@ -9,7 +9,7 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 - Make sure the guest additions CD is inserted into virtual box
 - Run the following commands:
  ```
- wget https://github.com/guiweber/config/blob/master/webserv/files/cfg.sh
+ wget https://goo.gl/LCs85o -O cfg.sh
  chmod +x cfg.sh
 ```
 - change the passwords for the mysql config and then execute the file as su
