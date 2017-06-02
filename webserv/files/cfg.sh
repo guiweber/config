@@ -39,7 +39,7 @@ make install
 # Install Owncloud
 cd /var/tmp
 wget https://download.owncloud.org/community/owncloud-10.0.2.tar.bz2
-tar -xvzf owncloud-10.0.2.tar.bz2
+tar -xvjf owncloud-10.0.2.tar.bz2
 mv owncloud-10.0.2 /var/www/html/owncloud
 
 # Configure startup apps
