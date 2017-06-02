@@ -34,7 +34,6 @@ wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wall
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
 firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
 firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
-firewall-cmd --permanent --zone=FedoraServer --add-port=22/tcp  #For ssh
 systemctl restart firewalld.service
 
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
