@@ -10,18 +10,18 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 
 # Install RPM Fusion and update 
-dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
-dnf update -y
+dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -qy
+dnf update -qy
 
 # Vbox guest additions installation
-dnf install gcc kernel-devel kernel-headers -y 
+dnf install gcc kernel-devel kernel-headers -qy 
 mkdir --p /media/cdrom
 mount -t auto /dev/cdrom media/cdrom/
 sh /media/cdrom/VBoxLinuxAdditions.run 
 
 # Install web apps
-dnf install mariadb mariadb-server httpd mod_ssl php composer -y
-dnf install install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -y
+dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
+dnf install install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
 
 # httpd configuration
 cd /etc/httpd/conf.d
@@ -33,10 +33,10 @@ firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
 firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
 
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
-dnf install ffmpeg -y
+dnf install ffmpeg -qy
 
 # Install certbot for SSL certificate creation
-dnf install python-certbot-apache -y
+dnf install python-certbot-apache -qy
 
 # Install Ampache
 mkdir /var/www/html/ampache
