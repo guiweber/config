@@ -23,7 +23,7 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 
 # Install web apps
 dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
-dnf install php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
+dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
 
 # httpd configuration
 cd /etc/httpd/conf.d
