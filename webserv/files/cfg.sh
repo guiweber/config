@@ -14,7 +14,12 @@
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -qy
 dnf update -qy
 
-# Vbox guest additions installation
+# Install Fedora Cockpit management tools
+dnf install cockpit
+systemctl enable --now cockpit.socket
+firewall-cmd --add-service=cockpit --permanent
+
+# Vbox guest additions installation needed for host disk sharing
 dnf install gcc kernel-devel kernel-headers -qy 
 mkdir --p /media/cdrom
 mount -t auto /dev/cdrom /media/cdrom
