@@ -71,13 +71,16 @@ chcon -t httpd_sys_rw_content_t /media/ampache -R
 # Install Wallbag
 mkdir /var/www/html/wallbag
 cd /var/www/html/wallbag
-wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package
+wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package --strip-components=1
 rm latest-v2-package -f
 
 # Install Owncloud
 mkdir /var/www/html/owncloud
 cd /var/www/html/owncloud
 wget https://download.owncloud.com/download/community/setup-owncloud.php
+cd /var/www/html/
+chown -R apache:apache owncloud
+chcon -t httpd_sys_rw_content_t  owncloud
 
 # Install infopage
 mkdir /var/www/html/phpinfo
