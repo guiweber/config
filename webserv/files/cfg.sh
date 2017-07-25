@@ -34,6 +34,7 @@ cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/nextcloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
 # PHP configuration
@@ -81,6 +82,14 @@ wget https://download.owncloud.com/download/community/setup-owncloud.php
 cd /var/www/html/
 chown -R apache:apache owncloud
 chcon -t httpd_sys_rw_content_t  owncloud
+
+# Install Nextcloud
+mkdir /var/www/html/nextcloud
+cd /var/www/html/nextcloud
+wget https://download.nextcloud.com/server/installer/setup-nextcloud.php
+cd /var/www/html/
+chown -R apache:apache nextcloud
+chcon -t httpd_sys_rw_content_t  nextcloud
 
 # Install infopage
 mkdir /var/www/html/phpinfo
