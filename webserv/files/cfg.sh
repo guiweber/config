@@ -15,7 +15,7 @@ dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$
 dnf update -qy
 
 # Install Fedora Cockpit management tools
-dnf install cockpit
+dnf install cockpit -qy
 systemctl enable --now cockpit.socket
 firewall-cmd --add-service=cockpit --permanent
 
