@@ -33,7 +33,7 @@ dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pe
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
-wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
+#wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/nextcloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
@@ -43,8 +43,6 @@ sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10G/' /etc/php.ini
 sed -i 's/max_input_time = 60/max_input_time = 7200/' /etc/php.ini
 sed -i 's/max_execution_time = 30/max_execution_time = 7200/' /etc/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php.ini
-
-
 
 # Add firewall rules
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
@@ -81,20 +79,18 @@ chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/data -R
 chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/var -R
 
 # Install Owncloud
-mkdir /var/www/html/owncloud
-cd /var/www/html/owncloud
-wget https://download.owncloud.com/download/community/setup-owncloud.php
-cd /var/www/html/
-chown -R apache:apache owncloud
-chcon -t httpd_sys_rw_content_t  owncloud
+#mkdir /var/www/html/owncloud
+#cd /var/www/html/owncloud
+#wget https://download.owncloud.com/download/community/setup-owncloud.php
+#cd /var/www/html/
+#chown -R apache:apache owncloud
+#chcon -t httpd_sys_rw_content_t  owncloud
 
 # Install Nextcloud
 mkdir /var/www/html/nextcloud
 cd /var/www/html/nextcloud
-wget https://download.nextcloud.com/server/installer/setup-nextcloud.php
-cd /var/www/html/
-chown -R apache:apache nextcloud
-chcon -t httpd_sys_rw_content_t  nextcloud
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/setup-nextcloud.php
+chown -R apache:apache /var/www/html/nextcloud && chcon -t httpd_sys_rw_content_t  /var/www/html/nextcloud
 
 # Install infopage
 mkdir /var/www/html/phpinfo
