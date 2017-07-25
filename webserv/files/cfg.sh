@@ -49,9 +49,6 @@ systemctl restart firewalld.service
 # Install FFMPEG (RPM Fusion) for Ampache transcoding
 dnf install ffmpeg -qy
 
-# Install certbot for SSL certificate creation
-dnf install python3-certbot-apache -qy
-
 # Install Ampache
 mkdir /var/www/html/ampache
 cd /var/www/html/ampache
@@ -89,6 +86,11 @@ chcon -t httpd_sys_rw_content_t  owncloud
 mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
+
+# Install certbot for SSL certificate creation
+dnf install python3-certbot-apache -qy
+cd cron.daily
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
 
 # Configure startup apps
 systemctl enable mariadb
