@@ -9,6 +9,11 @@
 # echo GRUB_GFXMODE=1280×720x24 >> /etc/default/grub
 # echo GRUB_GFXPAYLOAD_LINUX=1280x720x24 >> /etc/default/grub
 
+# Install DNS update script
+# Currently not working because "network issues prevent contacting DNS"
+# cd /home/admin
+# wget https://raw.githubusercontent.com/jhlange/dreamapi/master/dreamdns/dreamdns.pl
+# dnf install -y perl-Switch perl-libwww-perl perl-JSON perl-Crypt-SSLeay
 
 # Install RPM Fusion and update 
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -qy
