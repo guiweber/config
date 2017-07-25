@@ -76,9 +76,7 @@ rm latest-v2-package -f
 # Install Owncloud
 mkdir /var/www/html/owncloud
 cd /var/www/html/owncloud
-wget https://download.owncloud.org/community/owncloud-10.0.2.tar.bz2
-tar -xvjf owncloud-10.0.2.tar.bz2 --strip-components=1
-rm owncloud-10.0.2.tar.bz2 -f
+wget https://download.owncloud.com/download/community/setup-owncloud.php
 
 # Configure startup apps
 systemctl enable mariadb
