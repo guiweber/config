@@ -34,6 +34,7 @@ dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pe
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
 
 # PHP configuration
 sed -i 's/post_max_size = 8M/post_max_size = 128M/' /etc/php.ini
