@@ -33,7 +33,7 @@ dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pe
 # httpd configuration
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
-wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
@@ -68,11 +68,15 @@ mkdir /media/ampache/music
 chown -R apache:apache /media/ampache
 chcon -t httpd_sys_rw_content_t /media/ampache -R
 
-# Install Wallbag
-mkdir /var/www/html/wallbag
-cd /var/www/html/wallbag
+# Install Wallabag
+mkdir /var/www/html/wallabag
+cd /var/www/html/wallabag
 wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package --strip-components=1
 rm latest-v2-package -f
+chown -R apache:apache /var/www/html/wallabag
+chcon -t httpd_sys_content_t /var/www/html/wallabag -R
+chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/data -R
+chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/var -R
 
 # Install Owncloud
 mkdir /var/www/html/owncloud
