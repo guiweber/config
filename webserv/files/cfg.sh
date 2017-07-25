@@ -38,8 +38,13 @@ wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/next
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
 # PHP configuration
-sed -i 's/post_max_size = 8M/post_max_size = 20G/' /etc/php.ini
-sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 20G/' /etc/php.ini
+sed -i 's/post_max_size = 8M/post_max_size = 10G/' /etc/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10G/' /etc/php.ini
+sed -i 's/max_input_time = 60/max_input_time = 7200/' /etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 7200/' /etc/php.ini
+sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php.ini
+
+
 
 # Add firewall rules
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
