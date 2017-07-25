@@ -35,6 +35,7 @@ cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallbag.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
 # PHP configuration
 sed -i 's/post_max_size = 8M/post_max_size = 128M/' /etc/php.ini
@@ -77,6 +78,11 @@ rm latest-v2-package -f
 mkdir /var/www/html/owncloud
 cd /var/www/html/owncloud
 wget https://download.owncloud.com/download/community/setup-owncloud.php
+
+# Install infopage
+mkdir /var/www/html/phpinfo
+cd /var/www/html/phpinfo
+printf '<?php phpinfo(); ?>\n' > index.php
 
 # Configure startup apps
 systemctl enable mariadb
