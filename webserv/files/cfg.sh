@@ -70,10 +70,8 @@ chcon -t httpd_sys_rw_content_t /media/ampache -R
 # Install Wallbag
 mkdir /var/www/html/wallbag
 cd /var/www/html/wallbag
-wget https://github.com/wallabag/wallabag/archive/master.tar.gz
-tar -xvzf master.tar.gz --strip-components=1
-rm master.tar.gz -f
-make install
+wget https://wllbg.org/latest-v2-package && tar xvf latest-v2-package
+rm latest-v2-package -f
 
 # Install Owncloud
 mkdir /var/www/html/owncloud
