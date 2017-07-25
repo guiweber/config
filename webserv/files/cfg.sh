@@ -51,7 +51,7 @@ systemctl restart firewalld.service
 dnf install ffmpeg -qy
 
 # Install certbot for SSL certificate creation
-dnf install python-certbot-apache -qy
+dnf install certbot-apache -qy
 
 # Install Ampache
 mkdir /var/www/html/ampache
