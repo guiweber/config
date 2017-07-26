@@ -104,7 +104,7 @@ printf '<?php phpinfo(); ?>\n' > index.php
 
 # Install certbot for SSL certificate creation
 dnf install python3-certbot-apache -qy
-cd cron.daily
+cd /etc/cron.daily
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
 
 # Configure startup apps
