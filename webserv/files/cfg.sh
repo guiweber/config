@@ -67,12 +67,12 @@ chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow
 # Configure Ampache media folder
 ## The following lines are for when using a VBox Shared Folder
 #cd /media
-#wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/httpd_t.te
-#checkmodule -M -m -o httpd_t.mod httpd_t.te
-#semodule_package -o httpd_t.pp -m httpd_t.mod
-#semodule -i httpd_t.pp
+#wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/my_httpd_t.te
+#checkmodule -M -m -o my_httpd_t.mod my_httpd_t.te
+#semodule_package -o my_httpd_t.pp -m my_httpd_t.mod
+#semodule -i my_httpd_t.pp
 #systemctl restart httpd
-#rm httpd_t.* -f
+#rm my_httpd_t.* -f
 usermod -aG vboxsf admin
 usermod -aG vboxsf apache
 ## The following lines are for when using a local folder
