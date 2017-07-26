@@ -63,10 +63,16 @@ dnf install git -qy # Required for Ampache composer install
 composer install --prefer-source --no-interaction --quiet
 chown -R apache:apache config
 chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow PHP to write to the folder
-mkdir /media/ampache
-mkdir /media/ampache/music
-chown -R apache:apache /media/ampache
-chcon -t httpd_sys_rw_content_t /media/ampache -R
+
+# Configure Ampache media folder
+## The following two lines are for when using a VBox Shared Folder
+usermod -aG vboxsf admin
+usermod -aG vboxsf apache
+## The following lines are for when using a local folder
+#mkdir /media/ampache
+#mkdir /media/ampache/music
+#chown -R apache:apache /media/ampache
+#chcon -t httpd_sys_rw_content_t /media/ampache -R
 
 # Install Wallabag
 mkdir /var/www/html/wallabag
