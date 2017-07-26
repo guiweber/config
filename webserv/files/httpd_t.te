@@ -1,0 +1,15 @@
+module httpd_t 1.0;
+
+require {
+        type httpd_t;
+        type vmblock_t;
+        class file { read getattr open };
+}
+
+#============= httpd_t ==============
+allow httpd_t vmblock_t:file { read getattr open };
+
+# checkmodule -M -m -o httpd_t.mod httpd_t.te
+# semodule_package -o httpd_t.pp -m httpd_t.mod
+# semodule -i httpd_t.pp
+# systemctl restart httpd
