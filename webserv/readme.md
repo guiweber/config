@@ -30,4 +30,6 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 - Configure MariaDB in app/config/parameters.yml
 - Change default User/PW: wallabag/wallabag
 
-## Configure Owncloud
+## Configure Nextcloud
+- From the browser, type the address of the nextcloud server and execute `setup-nextcloud.php`
+- Follow the on-screen instructions to complete the setup.
