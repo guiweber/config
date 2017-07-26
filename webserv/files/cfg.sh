@@ -65,7 +65,14 @@ chown -R apache:apache config
 chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow PHP to write to the folder
 
 # Configure Ampache media folder
-## The following two lines are for when using a VBox Shared Folder
+## The following lines are for when using a VBox Shared Folder
+#cd /media
+#wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/httpd_t.te
+#checkmodule -M -m -o httpd_t.mod httpd_t.te
+#semodule_package -o httpd_t.pp -m httpd_t.mod
+#semodule -i httpd_t.pp
+#systemctl restart httpd
+#rm httpd_t.* -f
 usermod -aG vboxsf admin
 usermod -aG vboxsf apache
 ## The following lines are for when using a local folder
