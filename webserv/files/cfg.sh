@@ -84,21 +84,13 @@ chcon -t httpd_sys_content_t /var/www/html/wallabag -R
 chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/data -R
 chcon -t httpd_sys_rw_content_t /var/www/html/wallabag/var -R
 
-# Install Owncloud
-#mkdir /var/www/html/owncloud
-#cd /var/www/html/owncloud
-#wget https://download.owncloud.com/download/community/setup-owncloud.php
-#cd /var/www/html/
-#chown -R apache:apache owncloud
-#chcon -t httpd_sys_rw_content_t  owncloud
-
 # Install Nextcloud
 mkdir /var/www/html/nextcloud
 cd /var/www/html/nextcloud
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/setup-nextcloud.php
 chown -R apache:apache /var/www/html/nextcloud && chcon -t httpd_sys_rw_content_t  /var/www/html/nextcloud
 
-# Install infopage
+# Install phpinfo page
 mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
