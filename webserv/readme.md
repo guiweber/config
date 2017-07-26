@@ -23,6 +23,7 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 ## Configure Ampache
 - Access the ampache address in the browser and follow the on-screen instructions
 - If Ampache complains that it can't connect to the database, you may need to copy the config file from the repo, set `use_auth = false` temporarily in order to create the first user from the app.
+- If Ampache complains that the config file is unreadeable, press the orange "Write" button.
 - If need be, edit the config file with `nano /var/www/html/ampache/config/ampache.cfg.php`
 
 ## Configure Wallabag
