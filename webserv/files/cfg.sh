@@ -102,13 +102,9 @@ mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
 
-# Configure automatic startup
-systemctl enable mariadb
-systemctl enable httpd.service
-
-# Start apps
-systemctl start mariadb
-systemctl start httpd.service
+# Enable and start services
+systemctl enable --now mariadb
+systemctl enable --now httpd.service
 
 # Automated mySQL config
 dnf install expect -qy
