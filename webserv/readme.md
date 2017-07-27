@@ -13,10 +13,6 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
  wget https://goo.gl/LCs85o -O cfg.sh && bash cfg.sh | tee cfg.log
 ```
 
-## Run certbot
-- `certbot --apache`
-- Note: For certbot to work, NO virtual host should be pre-configured to listen to port 443.
-
 ## Configure MariaDB
 - Change default User/PW: root/root
 
