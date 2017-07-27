@@ -30,6 +30,7 @@ dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
 dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
 
 # httpd configuration
+setsebool -P httpd_can_network_connect on # So that SELinux allows httpd to send mail through SMTP
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
@@ -101,7 +102,7 @@ mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
 
-# Configure startup apps
+# Configure automatic startup
 systemctl enable mariadb
 systemctl enable httpd.service
 
