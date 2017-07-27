@@ -141,6 +141,7 @@ GRANT ALL ON nextcloud.* TO nextcloud@localhost IDENTIFIED BY 'nextcloud';
 EOF
 
 # Install and run certbot for SSL certificate creation
+## Note: For certbot to work, NO virtual host should be pre-configured to listen to port 443.
 dnf install python3-certbot-apache -qy
 cd /etc/cron.daily
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
