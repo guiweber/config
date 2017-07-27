@@ -33,3 +33,4 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 ## Configure Nextcloud
 - From the browser, type the address of the nextcloud server and execute `setup-nextcloud.php`
 - Follow the on-screen instructions to complete the setup.
+- Before loging in for the first time, make sure to setup the data folder and storage options correctly.
