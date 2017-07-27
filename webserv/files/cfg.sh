@@ -101,12 +101,6 @@ mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
 
-# Install and run certbot for SSL certificate creation
-dnf install python3-certbot-apache -qy
-cd /etc/cron.daily
-wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
-certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
-
 # Configure startup apps
 systemctl enable mariadb
 systemctl enable httpd.service
@@ -145,4 +139,10 @@ mysql -u root -proot << "EOF"
 CREATE DATABASE nextcloud;
 GRANT ALL ON nextcloud.* TO nextcloud@localhost IDENTIFIED BY 'nextcloud';
 EOF
+
+# Install and run certbot for SSL certificate creation
+dnf install python3-certbot-apache -qy
+cd /etc/cron.daily
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
+certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
 
