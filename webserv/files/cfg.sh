@@ -137,3 +137,11 @@ expect \"Reload privilege tables now?\"
 send \"y\r\"
 expect eof
 "
+
+# Database configuration
+## Nextcloud
+mysql -u root -proot << "EOF"
+CREATE DATABASE nextcloud;
+GRANT ALL ON nextcloud.* TO nextcloud@localhost IDENTIFIED BY 'nextcloud';
+EOF
+
