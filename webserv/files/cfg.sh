@@ -33,7 +33,6 @@ dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pe
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampache.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
-#wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/owncloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/nextcloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
 
