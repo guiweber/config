@@ -50,9 +50,6 @@ firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
 firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
 systemctl restart firewalld.service
 
-# Install FFMPEG (RPM Fusion) for Ampache transcoding
-dnf install ffmpeg -qy
-
 # Install Ampache
 mkdir /var/www/html/ampache
 cd /var/www/html/ampache
