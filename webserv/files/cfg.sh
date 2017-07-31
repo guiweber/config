@@ -34,6 +34,11 @@ sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10G/' /etc/php.ini
 sed -i 's/max_input_time = 60/max_input_time = 7200/' /etc/php.ini
 sed -i 's/max_execution_time = 30/max_execution_time = 7200/' /etc/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php.ini
+## Since the default upload_tmp directory limits upload size, lets configure a new one
+mkdir /var/www/upload-tmp
+chown -R apache:apache /var/www/upload-tmp
+chcon -t httpd_sys_rw_content_t upload-tmp -R
+sed -i 's/;upload_tmp_dir =/upload_tmp_dir = \/var\/www\/upload-tmp/' /etc/php.ini
 
 # Add firewall rules
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
