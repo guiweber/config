@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Change the console resolution - DOES NOT WORK WITH GUEST ADDITIONS: USE SSH INSTEAD
-# Option 1
-# https://www.pendrivelinux.com/vga-boot-modes-to-set-screen-resolution/
-# echo GRUB_CMDLINE_LINUX_DEFAULT="vga=795" >> /etc/default/grub
-# grub2-mkconfig -o /boot/grub2/grub.cfg
-# Option 2 (not tested)
-# echo GRUB_GFXMODE=1280×720x24 >> /etc/default/grub
-# echo GRUB_GFXPAYLOAD_LINUX=1280x720x24 >> /etc/default/grub
-
 # Install RPM Fusion and update 
 dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -qy
 dnf update -qy
