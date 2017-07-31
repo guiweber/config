@@ -41,6 +41,17 @@ firewall-cmd --permanent --zone=FedoraServer --add-port=80/tcp
 firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
 systemctl restart firewalld.service
 
+# Configure VBox shared folder for HTTPD access
+cd /home
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/my_httpd_t.te
+checkmodule -M -m -o my_httpd_t.mod my_httpd_t.te
+semodule_package -o my_httpd_t.pp -m my_httpd_t.mod
+semodule -i my_httpd_t.pp
+systemctl restart httpd
+rm my_httpd_t.* -f
+usermod -aG vboxsf admin
+usermod -aG vboxsf apache
+
 # Install Ampache
 mkdir /var/www/html/ampache
 cd /var/www/html/ampache
@@ -51,19 +62,7 @@ dnf install git -qy # Required for Ampache composer install
 composer install --prefer-source --no-interaction --quiet
 chown -R apache:apache config
 chcon -t httpd_sys_rw_content_t config -R # Changes the SELinux context to allow PHP to write to the folder
-
-# Configure Ampache media folder
-## The following lines are for when using a VBox Shared Folder
-cd /media
-wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/my_httpd_t.te
-checkmodule -M -m -o my_httpd_t.mod my_httpd_t.te
-semodule_package -o my_httpd_t.pp -m my_httpd_t.mod
-semodule -i my_httpd_t.pp
-systemctl restart httpd
-rm my_httpd_t.* -f
-usermod -aG vboxsf admin
-usermod -aG vboxsf apache
-## The following lines are for when using a local folder
+## Configure Ampache media folder IF using a local folder. Leave commented if using a VBox shared folder.
 #mkdir /media/ampache
 #mkdir /media/ampache/music
 #chown -R apache:apache /media/ampache
