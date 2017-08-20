@@ -97,6 +97,7 @@ printf '<?php phpinfo(); ?>\n' > index.php
 # Enable and start services
 systemctl enable --now mariadb
 systemctl enable --now httpd.service
+systemctl enable --now php-fpm
 
 # Automated mySQL config
 dnf install expect -qy
