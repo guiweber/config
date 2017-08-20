@@ -17,8 +17,8 @@ sh /media/cdrom/VBoxLinuxAdditions.run
 # If this fails, check logs at /var/log/VboxGuestAdditions.log
 
 # Install web apps
-dnf install mariadb mariadb-server httpd mod_ssl php composer -qy
-dnf install php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
+dnf install mariadb mariadb-server httpd mod_ssl php php-fpm composer -qy
+dnf install php-opcache php-bcmath php-pecl-apcu php-cli php-pear php-pdo php-mysqlnd php-pecl-memcache php-pecl-memcached php-gd php-mbstring php-mcrypt php-xml -qy
 
 # httpd configuration
 setsebool -P httpd_can_network_connect on # So that SELinux allows httpd to send mail through SMTP
