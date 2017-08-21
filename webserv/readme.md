@@ -45,3 +45,6 @@ If you want to enable HTTP2, you need to enable php-fpm and MPM Event as well. T
   - Go to Admin -> Additional Settings and...
     - Setup email config: Mode=SMTP, Encryption=SSL/TLS, Server=smtp.gmail.com, Port=465, as well as your credentials
     - Increase the maximum file size as needed
+
+## Tweak Selinux
+If SElinux is causing issues, set permissive mode in order to audit and make changes to the problematic polixies in `/etc/selinux/config`
