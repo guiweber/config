@@ -17,10 +17,13 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
 - Change default User/PW: root/root
 
 ## Configure Ampache
-- Access the ampache address in the browser and follow the on-screen instructions
+- Access the ampache address in the browser and follow the on-screen instructions. No not add a catalog now.
 - If Ampache complains that it can't connect to the database, you may need to copy the config file from the repo, set `use_auth = false` temporarily in order to create the first user from the app.
 - If Ampache complains that the config file is unreadeable, press the orange "Write" button.
-- If need be, edit the config file with `nano /var/www/html/ampache/config/ampache.cfg.php`
+- Edit the config file with `nano /var/www/html/ampache/config/ampache.cfg.php`
+  - Set `album_art_min_width = 255` and `album_art_min_height = 255`
+  - Set `show_similar = "true"`
+  - Set the LastFM API Key & Secret
 
 ## Configure Wallabag
 - Configure MariaDB in app/config/parameters.yml
