@@ -5,7 +5,7 @@ require {
         type vmblock_t;
         type hugetlbfs_t;
         class dir { read add_name create execute remove_name rename reparent rmdir };
-        class file { read getattr open append create rename setattr unlink write };
+        class file { read getattr open append create rename setattr unlink write execute };
 }
 
 #============= httpd_t ==============
