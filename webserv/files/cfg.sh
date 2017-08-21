@@ -31,14 +31,18 @@ wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpi
 # PHP configuration
 sed -i 's/post_max_size = 8M/post_max_size = 10G/' /etc/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 10G/' /etc/php.ini
-sed -i 's/max_input_time = 60/max_input_time = 7200/' /etc/php.ini
-sed -i 's/max_execution_time = 30/max_execution_time = 7200/' /etc/php.ini
+sed -i 's/max_input_time = 60/max_input_time = 14400/' /etc/php.ini
+sed -i 's/max_execution_time = 30/max_execution_time = 14400/' /etc/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 512M/' /etc/php.ini
 ## Since the default upload_tmp directory limits upload size, lets configure a new one
 mkdir /var/www/upload-tmp
 chown -R apache:apache /var/www/upload-tmp
 chcon -t httpd_sys_rw_content_t upload-tmp -R
 sed -i 's/;upload_tmp_dir =/upload_tmp_dir = \/var\/www\/upload-tmp/' /etc/php.ini
+## Configure PHP_Opcache
+sed -i 's/;opcache.enable_cli=0/opcache.enable_cli=1/' /etc/php.d/10-opcache.ini
+sed -i 's/opcache.max_accelerated_files=4000/opcache.max_accelerated_files=10000/' /etc/php.d/10-opcache.ini
+sed -i 's/;opcache.revalidate_freq=2/opcache.revalidate_freq=1/' /etc/php.d/10-opcache.ini
 
 # Add firewall rules
 # firewall-cmd --get-active-zones # Use this to check firewall zone if needed
@@ -97,7 +101,7 @@ printf '<?php phpinfo(); ?>\n' > index.php
 # Enable and start services
 systemctl enable --now mariadb
 systemctl enable --now httpd.service
-systemctl enable --now php-fpm
+# systemctl enable --now php-fpm
 
 # Automated mySQL config
 dnf install expect -qy
