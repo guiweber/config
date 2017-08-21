@@ -13,6 +13,13 @@ These are instructions to configure Fedora webserver running Ampache, Owncloud a
  wget https://goo.gl/LCs85o -O cfg.sh && bash cfg.sh | tee cfg.log
 ```
 
+## Configure Apache
+If you want to enable HTTP2, you need to enable php-fpm and MPM Event as well. The reason for these two last changes is that HTTP2 is not compatible with MPM Prefork and that mod_php is only compatible with MPM Prefork.
+- Change the MPM handler to Event in `/etc/httpd/conf.modules.d/00-mpm.conf`
+- Enable php-fpm (should be already installed) with `systemctl enable --now php-fpm`
+- Add `Protocols h2 http/1.1` to the vhosts or to the httpd main config
+- Add the proxy pass rule to the vhosts, e.g. `ProxyPassMatch ^/(.*\.php(/.*)?)$ unix:/run/php-fpm/www.sock|fcgi://localhost/var/www/html/nextcloud/`
+
 ## Configure MariaDB
 - Change default User/PW: root/root
 
