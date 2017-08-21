@@ -137,3 +137,8 @@ cd /etc/cron.daily
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
 certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
 
+# Removes non-secure vhosts and add secure redirects
+cd /etc/httpd/conf.d
+rm ampache.conf wallabag.conf nextcloud.conf phpinfo.conf -f
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/redirects.conf
+systemctl restart httpd
