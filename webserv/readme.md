@@ -47,4 +47,4 @@ If you want to enable HTTP2, you need to enable php-fpm and MPM Event as well. T
     - Increase the maximum file size as needed
 
 ## Tweak Selinux
-If SElinux is causing issues, set permissive mode in order to audit and make changes to the problematic polixies in `/etc/selinux/config`
+If SElinux is causing issues, set permissive mode in order to [audit](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security-Enhanced_Linux/sect-Security-Enhanced_Linux-Fixing_Problems-Allowing_Access_audit2allow.html) and make changes to the problematic polixies in `/etc/selinux/config`.
