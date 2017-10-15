@@ -139,6 +139,7 @@ EOF
 dnf install python3-certbot-apache -qy
 cd /etc/cron.daily
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
+chmod 754 renew_certs.sh
 certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
 
 # Removes non-secure vhosts and add secure redirects
