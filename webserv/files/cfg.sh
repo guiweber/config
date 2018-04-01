@@ -137,10 +137,8 @@ EOF
 # Install and run certbot for SSL certificate creation
 ## Note: For certbot to work, NO virtual host should be pre-configured to listen to port 443.
 dnf install python3-certbot-apache -qy
-cd /etc/cron.daily
-wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/renew_certs.sh
-chmod 754 renew_certs.sh
 certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
+systemctl enable --now certbot-renew.timer
 
 # Removes non-secure vhosts and add secure redirects
 cd /etc/httpd/conf.d
