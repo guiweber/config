@@ -27,6 +27,7 @@ wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/ampa
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/wallabag.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/nextcloud.conf
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/phpinfo.conf
+wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/media.conf
 
 # PHP configuration
 sed -i 's/post_max_size = 8M/post_max_size = 10G/' /etc/php.ini
@@ -51,6 +52,7 @@ firewall-cmd --permanent --zone=FedoraServer --add-port=443/tcp
 systemctl restart firewalld.service
 
 # Configure VBox shared folder for HTTPD access
+# Note: They are located under: /media/
 cd /home
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/my_httpd_t.te
 checkmodule -M -m -o my_httpd_t.mod my_httpd_t.te
@@ -98,6 +100,9 @@ mkdir /var/www/html/phpinfo
 cd /var/www/html/phpinfo
 printf '<?php phpinfo(); ?>\n' > index.php
 
+# Install Emby
+mkdir /var/www/html/media
+
 # Enable and start services
 systemctl enable --now mariadb
 systemctl enable --now httpd.service
@@ -137,11 +142,14 @@ EOF
 # Install and run certbot for SSL certificate creation
 ## Note: For certbot to work, NO virtual host should be pre-configured to listen to port 443.
 dnf install python3-certbot-apache -qy
-certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net
+certbot --apache -n --agree-tos -d drive.stematics.net,music.stematics.net,phpinfo.stematics.net,wallabag.stematics.net,media.stematics.net
 systemctl enable --now certbot-renew.timer
+## Note2: Links to the actual certificates can be found at: cd /etc/httpd/conf.d
+# SSLCertificateFile /etc/letsencrypt/live/XXX.stematics.net/fullchain.pem
+# SSLCertificateKeyFile /etc/letsencrypt/live/XXX.stematics.net/privkey.pem
 
 # Removes non-secure vhosts and add secure redirects
 cd /etc/httpd/conf.d
-rm ampache.conf wallabag.conf nextcloud.conf phpinfo.conf -f
+rm ampache.conf wallabag.conf nextcloud.conf phpinfo.conf media.conf -f
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/redirects.conf
 systemctl restart httpd
