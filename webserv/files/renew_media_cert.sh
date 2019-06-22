@@ -1,6 +1,7 @@
 # Replaces media config so that port 80 is used and renews the cert
 cd /etc/httpd/conf.d
 wget https://raw.githubusercontent.com/guiweber/config/master/webserv/files/media.conf
+rm redirects.conf -f
 systemctl restart httpd
 certbot --apache -n --agree-tos -d media.stematics.net
 
