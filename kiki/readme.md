@@ -50,6 +50,7 @@ WebUI\Username=kiki
 ```
 
 ## Tips
+- The IP whitelist range should be in CIDR notation, so 192.168.1.0/24 means the range 192.168.1.0 to 192.168.1.255
 - If necessary use the following to route localhost to another linux computer (as suggested https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/) in order to test if the WebUI works on localhost
  ```bash
 ssh username@server_ip -L 127.0.0.1:8080:127.0.0.1:8080 -N
