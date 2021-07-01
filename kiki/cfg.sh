@@ -15,5 +15,8 @@ systemctl daemon-reload
 systemctl start qbittorrent
 systemctl enable qbittorrent
 
+# Add firewall rule
+firewall-cmd --add-port=2000/tcp --permanent
+systemctl restart firewalld
 
 # disable logging to disk
