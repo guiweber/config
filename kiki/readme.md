@@ -48,7 +48,14 @@ WebUI\Username=kiki
  ```bash
  sudo systemctl restart qbittorrent
 ```
-- If necessary use the following to see open ports
+
+## Tips
+- If necessary use the following to route localhost to another linux computer (as suggested https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/) in order to test if the WebUI works on localhost
+ ```bash
+ssh username@server_ip -L 127.0.0.1:8080:127.0.0.1:8080 -N
+```
+
+-  You can see open ports (doesn't mean they pass through the firewall though)
  ```bash
 nmap localhost
 ```
