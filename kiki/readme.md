@@ -12,4 +12,23 @@ Instructions to configure a headless qbitorrent server on raspberry pi 4b with f
 ```
 
 ## Finish configuration
+- Add the following lines to the qbittorent config file, located at qbtuser/.config/qBittorrent/qBittorrent.conf,  then restart the service
+ ```
+[LegalNotice]
+Accepted=true
 
+[Preferences]
+WebUI\Port=1999
+WebUI\Address=*
+WebUI\ServerDomains=*
+WebUI\Enabled=true
+
+ ```
+ Then restart the service
+ ```bash
+ sudo systemctl restart qbittorrent
+```
+- If necessary use the following to see open ports
+ ```bash
+nmap localhost
+```
