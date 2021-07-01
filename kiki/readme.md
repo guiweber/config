@@ -18,10 +18,30 @@ Instructions to configure a headless qbitorrent server on raspberry pi 4b with f
 Accepted=true
 
 [Preferences]
-WebUI\Port=1999
 WebUI\Address=*
-WebUI\ServerDomains=*
+WebUI\AlternativeUIEnabled=false
+WebUI\AuthSubnetWhitelist=192.168.1.0/24
+WebUI\AuthSubnetWhitelistEnabled=true
+WebUI\BanDuration=3600
+WebUI\CSRFProtection=true
+WebUI\ClickjackingProtection=true
+WebUI\CustomHTTPHeaders=
+WebUI\CustomHTTPHeadersEnabled=false
 WebUI\Enabled=true
+WebUI\HTTPS\CertificatePath=
+WebUI\HTTPS\Enabled=false
+WebUI\HTTPS\KeyPath=
+WebUI\HostHeaderValidation=true
+WebUI\LocalHostAuth=false
+WebUI\MaxAuthenticationFailCount=5
+WebUI\Password_PBKDF2="@ByteArray(On5iDRFbtl9fdDzxQ8A20g==:O9T1n9pKKHHhSFoIngteoL8oevZBynj7W4uDoCvBYmRMVPKw9fHm3yuyqfIRQ6XkPErK29ZGBhSDtiGYVxt2vA==)"
+WebUI\Port=2000
+WebUI\RootFolder=
+WebUI\SecureCookie=true
+WebUI\ServerDomains=*
+WebUI\SessionTimeout=3600
+WebUI\UseUPnP=false
+WebUI\Username=kiki
 
  ```
  Then restart the service
