@@ -15,7 +15,10 @@ systemctl daemon-reload
 systemctl start qbittorrent
 systemctl enable qbittorrent
 
-# Add firewall rule
+# Port 80 cannot be used by normal users, bu we can redirect it to our port so that we dont have to enter the port in the address bar
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 2000
+
+# Add firewall rule for our port
 firewall-cmd --add-port=2000/tcp --permanent
 systemctl restart firewalld
 
