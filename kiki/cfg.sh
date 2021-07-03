@@ -6,7 +6,7 @@ usermod -s /usr/sbin/nologin qbtuser
 
 # Update and install software
 dnf update -qy
-dnf install qbittorrent-nox nmap -qy
+dnf install qbittorrent-nox nmap openvpn -qy
 
 # creates the service
 cd /etc/systemd/system/
@@ -24,5 +24,7 @@ iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 2000
 firewall-cmd --add-port=2000/tcp --permanent
 firewall-cmd --permanent --add-service=http
 systemctl restart firewalld
+
+# Configure OpenVPN
 
 # disable logging to disk
