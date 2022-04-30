@@ -56,7 +56,15 @@ WebUI\Username=kiki
 ssh username@server_ip -L 127.0.0.1:port_number:127.0.0.1:port_number -N
 ```
 
--  You can see open ports (doesn't mean they pass through the firewall though)
+-  You can see open ports (doesn't mean they pass through the firewall though) with one of these commands. Port 80 will not be shown since there is no service listening actively on it (only redirecting)
  ```bash
 nmap localhost
+netstat -nltp
 ```
+
+- iptables it not used by Fedora anymore, firewall and redirects are managed by firewalld
+- You can see firewalld rules
+```bash
+firewall-cmd --list-all
+```
+
