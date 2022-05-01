@@ -6,7 +6,7 @@ usermod -s /usr/sbin/nologin qbtuser
 
 # Update and install software
 dnf update -qy
-dnf install qbittorrent-nox nmap openvpn -qy
+dnf install qbittorrent-nox nmap wireguard-tools -qy
 
 # creates the service
 cd /etc/systemd/system/
@@ -22,8 +22,10 @@ firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toport=2000
 firewall-cmd --permanent --add-service=http
 # If it doesn't work with only this, try this:
 # firewall-cmd --permanent --zone=public --remove-port=80/tcp
-systemctl restart firewalld
 
-# Configure OpenVPN
 
 # disable logging to disk
+
+# restart services
+systemctl restart firewalld
+systemctl restart qbittorrent
