@@ -44,10 +44,22 @@ WebUI\UseUPnP=false
 WebUI\Username=kiki
 
  ```
- Then restart the service
+ Then restart the service and check that the webUI is accessible
  ```bash
  sudo systemctl restart qbittorrent
 ```
+
+## Config VPN
+As su, put the wireguard config in a file named wg0.conf in /etc/wireguard
+Run 
+```bash
+systemctl enable wg-quick@wg0
+systemctl daemon-reload
+systemctl start wg-quick@wg0
+sudo systemctl restart qbittorrent
+```
+Then open the webUI and bind the app to the wg0 interface
+
 
 ## Tips
 - The IP whitelist range should be in CIDR notation, so 192.168.1.0/24 means the range 192.168.1.0 to 192.168.1.255
@@ -60,6 +72,12 @@ ssh username@server_ip -L 127.0.0.1:port_number:127.0.0.1:port_number -N
  ```bash
 nmap localhost
 netstat -nltp
+```
+
+- The wireguard service may get confused is you use the non service "up" and "down" command while the service is running (e.g. disabling and re-enabling the service may not restore the tunnel)
+-  You can see if a wireguard connection is active with 
+ ```bash
+wg show
 ```
 
 - iptables it not used by Fedora anymore, firewall and redirects are managed by firewalld
