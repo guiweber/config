@@ -65,17 +65,34 @@ Connect to the web console and enable auto-updates
 https://192.168.1.XXX:9090/updates
 
 ## Expand system drive storage
-The default SD partition may be small and may cause issues during updates. Use parted, tutorial:
-https://linoxide.com/parted-commands-manage-disk-partition/
-And then resize the file system to match the partition using (if the partition is an LVM):
+The default SD partition may be small and may cause issues during updates. Use parted, with command resizepart
+tutorial: https://linoxide.com/parted-commands-manage-disk-partition/
+And then resize the Physical Volume (PV), logical volume and file system to match the partition using (if the partition is an LVM):
+(Note! Check partition and volume names, which may vary)
  ```bash
-pvresize /dev/PARTITION_NAME
+pvresize /dev/mmcblk0p3
+lvextend -l +100%FREE /dev/fedora_fedora/root
+xfs_growfs /dev/fedora_fedora/root
 ```
+Note: The last step (xfs_growfs) may be done in the storage section of the admin panel. Otherwise a reboot may be needed to remove the "filesystem doesn't use all the volume space" warning in the admin panel.
 ref: https://unix.stackexchange.com/questions/32145/how-to-expand-lvm2-partition-in-fedora-linux
+ref2: https://www.rootusers.com/lvm-resize-how-to-increase-an-lvm-partition/
 
-or otherwise:
+If not an LVM, or XFS system, look into using "resize2fs"
+
+volume groups can be seen with:
  ```bash
-resize2fs /dev/PARTITION_NAME
+vgs
+vgdisplay
+```
+while logical volumes can be seen with:
+ ```bash
+vgs
+vgdisplay -v
+```
+and all file systems (does not include volume groups) can be seen with:
+ ```bash
+df -h
 ```
 
 ## Connect external storage
