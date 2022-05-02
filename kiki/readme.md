@@ -44,7 +44,7 @@ WebUI\UseUPnP=false
 WebUI\Username=kiki
 
  ```
- Then restart the service and check that the webUI is accessible
+ Then restart the service and check that the webUI is accessible on port 2000 and 80
  ```bash
  sudo systemctl restart qbittorrent
 ```
@@ -59,6 +59,27 @@ systemctl start wg-quick@wg0
 sudo systemctl restart qbittorrent
 ```
 Then open the webUI and bind the app to the wg0 interface
+
+## Web console config
+Connect to the web console and enable auto-updates
+https://192.168.1.XXX:9090/updates
+
+## Expand system drive storage
+The default SD partition may be small and may cause issues during updates. Use parted, tutorial:
+https://linoxide.com/parted-commands-manage-disk-partition/
+And then resize the file system to match the partition using (if the partition is an LVM):
+ ```bash
+pvresize /dev/PARTITION_NAME
+```
+ref: https://unix.stackexchange.com/questions/32145/how-to-expand-lvm2-partition-in-fedora-linux
+
+or otherwise:
+ ```bash
+resize2fs /dev/PARTITION_NAME
+```
+
+## Connect external storage
+And configure download location through the WebUI
 
 
 ## Tips
