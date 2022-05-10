@@ -60,6 +60,12 @@ sudo systemctl restart qbittorrent
 ```
 Then open the webUI and bind the app to the wg0 interface
 
+### Config VPN port forward
+TODO: To improve connectivity, we could have the VPN provider forward us incoming connections on the qbittorrent port (need to configure it with the provider) and map it in wireguard. Here are a few references on the subect:
+- https://www.wjunction.com/threads/build-an-seedbox-dedicated-server-with-intergrated-vpn-for-bittorrent-yourself.256960/
+- https://github.com/linuxserver/docker-wireguard/issues/58
+- https://www.cyberciti.biz/faq/how-to-set-up-wireguard-firewall-rules-in-linux/
+
 ## Web console config
 Connect to the web console and enable auto-updates
 https://192.168.1.XXX:9090/updates
