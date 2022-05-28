@@ -22,9 +22,12 @@ firewall-cmd --permanent --add-forward-port=port=80:proto=tcp:toport=2000
 firewall-cmd --permanent --add-service=http
 # If it doesn't work with only this, try this:
 # firewall-cmd --permanent --zone=public --remove-port=80/tcp
-
+sudo firewall-cmd --permanent --add-service=samba
 
 # disable logging to disk
+
+# create shared folder
+mkdir /mnt/usb_drive
 
 # restart services
 systemctl restart firewalld
