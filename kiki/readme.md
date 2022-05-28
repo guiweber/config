@@ -102,7 +102,14 @@ df -h
 ```
 
 ## Connect external storage
-And configure download location through the WebUI
+The /mnt/usb_drive folder has already been created by the config script. Check if the permissions are ok before continuing with ```ls -l```. To automount a USB drive, display all drives with ```blkid``` when add the line below (replace UUID and file system type) to /etc/fstab
+```UUID=17c1210c-8a88-42d6-b394-03f491415d5c /mnt/usb_drive    ext4    defaults        0 0```
+Then run
+```bash
+systemctl daemon-reload
+mount-a
+```
+In Cockpit under "file-sharing" (if not available dnf install cockpit-file-sharing, but should be installed fedora 36+), create a samba share at /mnt/usb_drive and a samba user with a password. Finally configure download location through the qbittorrent WebUI.
 
 
 ## Tips
