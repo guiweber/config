@@ -2,7 +2,7 @@
 
 # Update and install software
 dnf update -qy
-dnf install qbittorrent-nox nmap wireguard-tools -qy
+dnf install qbittorrent-nox nmap wireguard-tools cockpit-file-sharing -qy
 
 # Add firewall rule for our WebUI port and port 80 (both will be useable)
 firewall-cmd --add-port=2000/tcp --permanent
