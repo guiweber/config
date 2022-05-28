@@ -108,12 +108,12 @@ df -h
 
 ## Connect external storage
 The /mnt/usb_drive folder has already been created by the config script. Check if the permissions are ok before continuing with ```ls -l```. To automount a USB drive, display all drives with ```blkid``` when add the line below (replace UUID and file system type) to /etc/fstab
-```UUID=17c1210c-8a88-42d6-b394-03f491415d5c /mnt/usb_drive    ntfs    context=system_u:object_r:samba_share_t:s0        0 0```
-Note that the drive is open in the samba SE Linux context so that samba can read it. Maybe because of the ntfs filesystem or system location of the folder, it is not possible to change the SE Linux context in the traditional way (chcon).
+```UUID=F2A6B7D4A6B79795 /mnt/usb_drive    ntfs    context=system_u:object_r:samba_share_t:s0        0 0```
+Note that the drive is open in the samba SE Linux context so that samba can read it. Maybe because of the ntfs filesystem or system location of the folder, it is not possible to change the SE Linux context in the traditional way (chcon). In case of issues (with different file systems), the SE Linux context can also be set at the file system level ("fscontext" instead of "context" in the /etc/fstab line).
 Then run
 ```bash
 systemctl daemon-reload
-mount-a
+mount -a
 ```
 In Cockpit under "file-sharing", create a samba share at /mnt/usb_drive, allow user kiki_share and add a samba password to user kiki_share. Finally configure download location through the qbittorrent WebUI.
 
