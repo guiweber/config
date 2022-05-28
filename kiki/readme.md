@@ -1,5 +1,5 @@
 # Headless qbitorrent server configuration
-Instructions to configure a headless qbitorrent server on raspberry pi 4b with fedora 34+
+Instructions to configure a headless qbitorrent server on raspberry pi 4b with fedora 36+
 
 ## Prerequisites
 - Install Fedora Server aarch64
@@ -103,16 +103,18 @@ df -h
 
 ## Connect external storage
 The /mnt/usb_drive folder has already been created by the config script. Check if the permissions are ok before continuing with ```ls -l```. To automount a USB drive, display all drives with ```blkid``` when add the line below (replace UUID and file system type) to /etc/fstab
-```UUID=17c1210c-8a88-42d6-b394-03f491415d5c /mnt/usb_drive    ext4    defaults        0 0```
+```UUID=17c1210c-8a88-42d6-b394-03f491415d5c /mnt/usb_drive    ntfs    context=system_u:object_r:samba_share_t:s0        0 0```
+Note that the drive is open in the samba SE Linux context so that samba can read it. Maybe because of the ntfs filesystem or system location of the folder, it is not possible to change the SE Linux context in the traditional way (chcon).
 Then run
 ```bash
 systemctl daemon-reload
 mount-a
 ```
-In Cockpit under "file-sharing" (if not available dnf install cockpit-file-sharing, but should be installed fedora 36+), create a samba share at /mnt/usb_drive and a samba user with a password. Finally configure download location through the qbittorrent WebUI.
+In Cockpit under "file-sharing" (if not available dnf install cockpit-file-sharing, but should be installed fedora 36+), create a samba share at /mnt/usb_drive, allow user kiki_share and add a samba password to user kiki_share. Finally configure download location through the qbittorrent WebUI.
 
 
 ## Tips
+- SE Linux can be put in permissive or enforcing mode: setenforce permissive/
 - The IP whitelist range should be in CIDR notation, so 192.168.1.0/24 means the range 192.168.1.0 to 192.168.1.255
 - If necessary use the following to route localhost to another linux computer (as suggested https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/) in order to test if the WebUI works on localhost
  ```bash
