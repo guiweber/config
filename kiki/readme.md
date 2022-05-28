@@ -71,7 +71,13 @@ Connect to the web console and enable auto-updates
 https://192.168.1.XXX:9090/updates
 
 ## Expand system drive storage
-The default SD partition may be small and may cause issues during updates. Use parted, with command resizepart
+The default SD partition may be small and may cause issues during updates. Use parted, with command resizepart, about the following once in parted:
+```
+print all
+select /dev/mmcblk0
+resizepart
+quit
+```
 tutorial: https://linoxide.com/parted-commands-manage-disk-partition/
 And then resize the Physical Volume (PV), logical volume and file system to match the partition using (if the partition is an LVM):
 (Note! Check partition and volume names, which may vary)
@@ -80,7 +86,6 @@ pvresize /dev/mmcblk0p3
 lvextend -l +100%FREE /dev/fedora_fedora/root
 xfs_growfs /dev/fedora_fedora/root
 ```
-Note: The last step (xfs_growfs) may be done in the storage section of the admin panel. Otherwise a reboot may be needed to remove the "filesystem doesn't use all the volume space" warning in the admin panel.
 ref: https://unix.stackexchange.com/questions/32145/how-to-expand-lvm2-partition-in-fedora-linux
 ref2: https://www.rootusers.com/lvm-resize-how-to-increase-an-lvm-partition/
 
@@ -110,11 +115,11 @@ Then run
 systemctl daemon-reload
 mount-a
 ```
-In Cockpit under "file-sharing" (if not available dnf install cockpit-file-sharing, but should be installed fedora 36+), create a samba share at /mnt/usb_drive, allow user kiki_share and add a samba password to user kiki_share. Finally configure download location through the qbittorrent WebUI.
+In Cockpit under "file-sharing", create a samba share at /mnt/usb_drive, allow user kiki_share and add a samba password to user kiki_share. Finally configure download location through the qbittorrent WebUI.
 
 
 ## Tips
-- SE Linux can be put in permissive or enforcing mode: setenforce permissive/
+- SE Linux can be put in permissive or enforcing mode: setenforce permissive/enforcing
 - The IP whitelist range should be in CIDR notation, so 192.168.1.0/24 means the range 192.168.1.0 to 192.168.1.255
 - If necessary use the following to route localhost to another linux computer (as suggested https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/) in order to test if the WebUI works on localhost
  ```bash
