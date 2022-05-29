@@ -55,7 +55,7 @@ If for some reason all this doesn't work, it may be needed to login with qbtuser
 
 Ref: https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/
 
-If DHT and other peer exchange features should be off by default. Turn them on if allowed on the trackers you use.
+DHT and other peer exchange features should be off by default. Turn them on if allowed on the trackers you use.
 
 Finally verify the configuration of the download location, motitored folder and saved torrent folder through the qbittorrent WebUI.
 
