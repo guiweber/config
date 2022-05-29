@@ -20,6 +20,8 @@ mkdir /mnt/usb_drive
 
 # Configure samba
 firewall-cmd --permanent --add-service=samba
+systemctl start smb
+systemctl enable smb
 # Add Samba user that cannot login (shell points to /sbin/nologin)
 adduser --no-create-home --shell /sbin/nologin --home /mnt/usb_drive kiki_share
 
