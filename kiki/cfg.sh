@@ -24,6 +24,9 @@ adduser --no-create-home --shell /sbin/nologin --home /mnt/usb_drive kiki_share
 
 # Create qbittorrent user and disable ssh login
 adduser -s /usr/sbin/nologin qbtuser
+# Init the qbittorrent config with the legal notice accepted
+wget https://raw.githubusercontent.com/guiweber/config/master/kiki/qBittorrent.conf -P /home/qbtuser/.config/qBittorrent/
+chown qbtuser:qbtuser /home/qbtuser/.config/qBittorrent/qBittorrent.conf
 
 # creates the qbittorrent service
 cd /etc/systemd/system/
