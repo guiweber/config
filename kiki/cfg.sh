@@ -12,7 +12,8 @@ firewall-cmd --permanent --add-service=http
 # If it doesn't work with only this, try this:
 # firewall-cmd --permanent --zone=public --remove-port=80/tcp
 
-# disable logging to disk
+# Init the wireguard config file
+touch /etc/wireguard/wg0.conf
 
 # create shared folder
 mkdir /mnt/usb_drive
