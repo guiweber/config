@@ -33,14 +33,6 @@ If not an LVM or XFS system, look into using "resize2fs". See Tips section below
 ```bash
  wget https://raw.githubusercontent.com/guiweber/config/master/kiki/cfg.sh -O cfg.sh && bash cfg.sh | tee cfg.log
 ```
-
-## Verify configuration
-Check that the webUI is accessible on port 2000 and 80. If not, make sure that the qbittorrent config file at /home/qbtuser/.config/qBittorrent/qBittorrent.conf contains the lines from the config downloaded from github, and that the permissions are ok. If you make changes restart the service with ```systemctl restart qbittorrent```
-
-If for some reason all this doesn't work, it may be needed to login with qbtuser and run qbittorrent-nox once to accept the legal notice and initialize the config, but currently the "pre acceptance" hack works.
-
-Ref: https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/
-
 ## Connect external storage
 The /mnt/usb_drive folder has already been created by the config script. Check if the permissions are ok before continuing with ```ls -l```. To automount a USB drive, display all drives with ```blkid``` when add the line below (replace UUID and file system type) to /etc/fstab
 ```UUID=F2A6B7D4A6B79795 /mnt/usb_drive    ntfs    context=system_u:object_r:samba_share_t:s0        0 0```
@@ -50,9 +42,22 @@ Then run
 ```bash
 systemctl daemon-reload
 mount -a
+mkdir /mnt/usb_drive/add_torrents_here
+mkdir /mnt/usb_drive/saved_torrents
+mkdir /mnt/usb_drive/downloads
+systemctl restart qbittorrent
 ```
 
-Finally configure download location through the qbittorrent WebUI.
+## Verify qBittorrent configuration
+Check that the webUI is accessible on port 2000 and 80. If not, make sure that the qbittorrent config file at /home/qbtuser/.config/qBittorrent/qBittorrent.conf contains the lines from the config downloaded from github, and that the permissions are ok. If you make changes restart the service with ```systemctl restart qbittorrent```
+
+If for some reason all this doesn't work, it may be needed to login with qbtuser and run qbittorrent-nox once to accept the legal notice and initialize the config, but currently the "pre acceptance" hack works.
+
+Ref: https://rawsec.ml/en/archlinux-install-qbittorrent-nox-setup-webui/
+
+If DHT and other peer exchange features should be off by default. Turn them on if allowed on the trackers you use.
+
+Finally verify the configuration of the download location, motitored folder and saved torrent folder through the qbittorrent WebUI.
 
 ## Configure samba share
 In Cockpit under "file-sharing", create a samba share at /mnt/usb_drive, allow user kiki_share and add a samba password to user kiki_share. Verify that you can access the share. Ex: From windows explorer type ```\\192.168.1.xxx\share_name```, then windows should ask you for the samba credentials.
@@ -65,7 +70,7 @@ Then Run
 systemctl enable wg-quick@wg0
 systemctl daemon-reload
 systemctl start wg-quick@wg0
-sudo systemctl restart qbittorrent
+systemctl restart qbittorrent
 ```
 Then open the webUI and bind the app to the wg0 interface. Verify that the external IP is from the VPN with ```curl -4 icanhazip.com```
 
