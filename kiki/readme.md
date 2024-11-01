@@ -1,6 +1,9 @@
 # Headless qbitorrent server configuration
 Instructions to configure a headless qbitorrent server on raspberry pi 4b with fedora 36+
 
+Note: On the live system the configuration file is located at:
+`/home/qbtuser/.config/qBittorrent/qBittorrent.conf`
+
 ## Prerequisites
 - Install Fedora Server aarch64
 - Connect to the server on port 22 with SSH
